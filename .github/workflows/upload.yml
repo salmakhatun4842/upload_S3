@@ -16,8 +16,8 @@ jobs:
      - name: Configure AWS Credentials
        uses: aws-actions/configure-aws-credentials@master
        with:
-         aws-region: us-east-2
+         aws-region: ap-south-1
          role-to-assume: arn:aws:iam::894780385898:role/Github-Action-Role
          role-session-name: GithubActionsSession
     
-     - run: aws sts get-caller-identity
+     - run: aws s3 sync . s3://github-actions-static-bucket
