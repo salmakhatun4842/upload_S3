@@ -1,0 +1,23 @@
+name: Upload Website
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+ build:
+   name: build
+   permissions:
+     id-token: write
+     contents: write
+   runs-on: ubuntu-18.04
+   steps:
+     - name: Configure AWS Credentials
+       uses: aws-actions/configure-aws-credentials@master
+       with:
+         aws-region: us-east-2
+         role-to-assume: arn:aws:iam::894780385898:role/Github-Action-Role
+         role-session-name: GithubActionsSession
+    
+     - run: aws sts get-caller-identity
